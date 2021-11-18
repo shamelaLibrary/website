@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build:dev": "eleventy --serve --input=./src --output=./docs",
+    "build:prod": "eleventy --input=./src --output=./docs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1"
+  }
+}
