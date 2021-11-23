@@ -1,0 +1,73 @@
+---
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "categories/{{ category.name | slug }}/index.html"
+eleventyComputed:
+  title: "{{ category.name }}"
+---
+{% extends "layouts/default.njk" %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="h-100">
+    
+        <section class="h-100 d-flex justify-content-center align-items-center">
+        
+            <div class="text-center">
+                <h1 style="font-size: 5em">{{ category.name }}</h1>
+            </div>
+        
+        </section>
+
+        <section id="table" class="h-100 d-flex justify-content-center flex-column">
+        
+            <h1 class="mb-2">الكتب</h1>
+
+            <table class="display">
+            
+                <thead>
+                    <tr>
+                        <th>إسم الكتاب</th>
+                        <th>إسم الكاتب</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for book in books.by_category[category.name] %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        
+        </section >
+    
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="/js/jquery.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready( () => $('#table > table').DataTable() );
+
+    </script>
+
+{% endblock %}
