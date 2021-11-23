@@ -37,7 +37,9 @@
 
                     {% for category in categories %}
                     <tr>
-                        <td>{{ category }}</td>
+                        <td>
+                            <a class="text-reset" href="/categories/{{ category.name | slug }}">{{ category.name }}</a>
+                        </td>
                     </tr>
                     {% endfor %}
 
