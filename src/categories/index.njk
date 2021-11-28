@@ -43,7 +43,9 @@ eleventyComputed:
                 <tbody>
                     {% for book in books.by_category[category.name] %}
                     <tr>
-                        <td>{{ book.title }}</td>
+                        <td>
+                            <a href="/books/{{ book.id }}/{{ book.book | slug }}.html">{{ book.title }}</a>
+                        </td>
                         <td>{{ book.author }}</td>
                     </tr>
                     {% endfor %}
