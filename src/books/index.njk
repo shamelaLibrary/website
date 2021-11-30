@@ -3,7 +3,7 @@ pagination:
   data: books.by_book
   size: 1
   alias: book
-permalink: "books/{{ book.id }}/{{ book.book | slug }}.html"
+permalink: "books/{{ book.id }}-{{ book.title | slug }}.html"
 eleventyComputed:
   title: "{{ book.book }}"
 ---
