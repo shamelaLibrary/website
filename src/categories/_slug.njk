@@ -1,5 +1,12 @@
-{% set title = "جميع التصنيفات" %}
-
+---
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "categories/{{ category.name | slug }}.html"
+eleventyComputed:
+  title: "{{ category.name }}"
+---
 {% extends "layouts/default.njk" %}
 
 {% block head %}
@@ -15,31 +22,33 @@
         <section class="h-100 d-flex justify-content-center align-items-center">
         
             <div class="text-center">
-                <h1 style="font-size: 5em">{{ title }}</h1>
+                <h1 style="font-size: 5em">{{ category.name }}</h1>
             </div>
         
         </section>
 
         <section id="table" class="h-100 d-flex justify-content-center flex-column">
         
+            <h1 class="mb-2">الكتب</h1>
+
             <table class="display">
             
                 <thead>
                     <tr>
-                        <th>التصنيف</th>
+                        <th>إسم الكتاب</th>
+                        <th>إسم الكاتب</th>
                     </tr>
                 </thead>
 
                 <tbody>
-
-                    {% for category in categories %}
+                    {% for book in books.by_category[category.name] %}
                     <tr>
                         <td>
-                            <a class="text-reset" href="/categories/{{ category.name | slug }}.html">{{ category.name }}</a>
+                            <a href="/books/{{ book.id }}-{{ book.title | slug }}.html">{{ book.title }}</a>
                         </td>
+                        <td>{{ book.author }}</td>
                     </tr>
                     {% endfor %}
-
                 </tbody>
 
             </table>
