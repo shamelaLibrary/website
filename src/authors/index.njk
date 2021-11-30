@@ -1,54 +1,66 @@
----
-pagination:
-  data: authors
-  size: 1
-  alias: author
-permalink: "authors/{{ author.author | slug }}.html"
-eleventyComputed:
-  title: "{{ book.book }}"
----
+{% set title = "الكتاب" %}
+
 {% extends "layouts/default.njk" %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+{% endblock %}
 
 {% block content %}
 
-    <div class="d-flex flex-column align-items-center justify-content-evenly flex-md-row p-2 w-100 gap-5" style="height: 20em;">
+    <div class="h-100">
     
-        <section class="h-100" >
-
-          <header class="h1">معلومات عن الكتاب</header>
-
-          {% set info = {"book": "إسم الكتاب", "author": "الكاتب"} %}
-
-          <div>
-          
-            {% for property, text in info %}
-            <div>
-              <span class="text-bold">{{ text }} : </span>
-              <span>{{ book[property] }}</span>
+        <section class="h-100 d-flex justify-content-center align-items-center">
+        
+            <div class="text-center">
+                <h1 style="font-size: 5em">الكتاب</h1>
             </div>
-            {% endfor %}
-          
-          </div>
         
         </section>
 
-        <section class="text-center h-100" style="max-width: 25em">
+        <section id="table" class="h-100 d-flex justify-content-center flex-column">
         
-          <header class="h1">الصيغ المتوفرة</header>
+            <table class="display">
+            
+                <thead>
+                    <tr>
+                        <th>الإسم</th>
+                    </tr>
+                </thead>
 
-          {% set colors = { docx: "#2b579a", azw3: "#FF9900", epub: "#82b317", kfx: "#2f2f2f", mobi: "#b8955d" } %}
+                <tbody>
 
-          {% for file in book.files %}
+                    {% for author in authors %}
+                    <tr>
+                        <td>
+                            <a class="text-reset" href="/authors/{{ author.id }}-{{ author.author | slug }}.html">{{ author.author }}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
 
-            <a href="{{ file.link }}" class="btn text-white w-100 mb-2" style="background-color: {{ colors[file.extension] }}">
-              <span>التنزيل بصيغة</span>
-              <span class="fw-bold">{{ file.extension | upper }}</span>
-            </a>
+                </tbody>
 
-          {% endfor %}
+            </table>
         
-        </section>
-        
+        </section >
+    
     </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="/js/jquery.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready( () => $('#table > table').DataTable() );
+
+    </script>
 
 {% endblock %}
