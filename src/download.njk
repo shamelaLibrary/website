@@ -1,0 +1,79 @@
+{% set title = "تحميل الموسوعة بالكامل" %}
+{% extends "layouts/default.njk" %}
+
+{% block content %}
+
+    <div class="d-flex flex-column flex-md-row flex-xl-column align-items-center justify-content-evenly p-2 w-100 gap-5" style="height: 25em;">
+    
+        <section class="h-100" style="flex-basis: 100%">
+
+          <h1 class="font-bold text-center" style="font-size: 5em">تحميل الموسوعة الشاملة</h1>
+        
+        </section>
+
+        <section class="text-center h-100" style="max-width: 25em">
+        
+          <header class="h1 text-muted">الصيغ المتوفرة</header>
+
+            {%
+            
+                set extensions = {
+
+                    docx: {
+
+                        link: "https://t.me/shamela_kindle/37668",
+                        
+                        color: "#2b579a"
+
+                    },
+
+                    azw3: {
+                        
+                        link: "https://t.me/shamela_kindle/37664",
+
+                        color: "#FF9900"
+                    
+                    },
+                    
+                    epub: {
+                        
+                        link: "https://t.me/shamela_kindle/37676",
+
+                        color: "#82b317"
+
+                    },
+                    
+                    kfx: {
+                        
+                        link: "https://t.me/shamela_kindle/37661",
+
+                        color: "#2f2f2f"
+
+                    },
+                    
+                    mobi: {
+                        
+                        link: "https://t.me/shamela_kindle/37671",
+
+                        color: "#b8955d"
+                    
+                    }
+                
+                }
+            
+            %}
+
+            {% for extensionName, extension in extensions %}
+
+                <a href="{{ extension.link }}" class="btn text-white w-100 mb-2" style="background-color: {{ extension.color }}">
+                    <span>التنزيل بصيغة</span>
+                    <span class="fw-bold">{{ extensionName | upper }}</span>
+                </a>
+
+            {% endfor %}
+        
+        </section>
+        
+    </div>
+
+{% endblock %}
