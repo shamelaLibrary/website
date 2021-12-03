@@ -9,48 +9,43 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="h-100">
     
-        <section class="h-100 d-flex justify-content-center align-items-center">
-        
-            <div class="text-center">
-                <h1 style="font-size: 5em">الموسوعة الشاملة</h1>
-                <h2 class="text-muted">أكثر من 7000 كتاب إلكتروني</h2>
-            </div>
-        
-        </section>
-
-        <section id="table" class="h-100 d-flex justify-content-center flex-column">
-        
-            <h1 class="mb-2">التصنيفات</h1>
-
-            <table class="display">
-            
-                <thead>
-                    <tr>
-                        <th>الإسم</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    {% for category in categories %}
-                    <tr>
-                        <td>
-                            <a class="text-reset" href="/categories/{{ category.name | slug }}.html">{{ category.name }}</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-
-            </table>
-        
-        </section >
+    <section class="d-flex justify-content-center align-items-center" style="height: 100vh">
     
-    </div>
+        <div class="text-center">
+            <h1 style="font-size: 5em">الموسوعة الشاملة</h1>
+            <h2 class="text-muted">أكثر من 7000 كتاب إلكتروني</h2>
+        </div>
+    
+    </section>
 
+    <section id="table" class="d-flex justify-content-center flex-column p-4" style="height: 100vh">
+    
+        <h1 class="mb-2">التصنيفات</h1>
+
+        <table class="display">
+        
+            <thead>
+                <tr>
+                    <th>الإسم</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for category in categories %}
+                <tr>
+                    <td>
+                        <a class="text-reset" href="/categories/{{ category.name | slug }}.html">{{ category.name }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    
+    </section >
 
 {% endblock %}
 

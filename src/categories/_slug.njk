@@ -17,46 +17,41 @@ eleventyComputed:
 
 {% block content %}
 
-    <div class="h-100">
+    <section class="d-flex justify-content-center align-items-center" style="height: 100vh">
     
-        <section class="h-100 d-flex justify-content-center align-items-center">
-        
-            <div class="text-center">
-                <h1 style="font-size: 5em">{{ category.name }}</h1>
-            </div>
-        
-        </section>
-
-        <section id="table" class="h-100 d-flex justify-content-center flex-column">
-        
-            <h1 class="mb-2">الكتب</h1>
-
-            <table class="display">
-            
-                <thead>
-                    <tr>
-                        <th>إسم الكتاب</th>
-                        <th>إسم الكاتب</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for book in books.by_category[category.name] %}
-                    <tr>
-                        <td>
-                            <a href="/books/{{ book.id }}-{{ book.title | slug }}.html">{{ book.title }}</a>
-                        </td>
-                        <td>{{ book.author }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-
-            </table>
-        
-        </section >
+        <div class="text-center">
+            <h1 style="font-size: 5em">{{ category.name }}</h1>
+        </div>
     
-    </div>
+    </section>
 
+    <section id="table" class="d-flex justify-content-center flex-column p-4" style="height: 100vh">
+    
+        <h1 class="mb-2">الكتب</h1>
+
+        <table class="display">
+        
+            <thead>
+                <tr>
+                    <th>إسم الكتاب</th>
+                    <th>إسم الكاتب</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for book in books.by_category[category.name] %}
+                <tr>
+                    <td>
+                        <a class="text-reset" href="/books/{{ book.id }}-{{ book.title | slug }}.html">{{ book.title }}</a>
+                    </td>
+                    <td>{{ book.author }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    
+    </section >
 
 {% endblock %}
 
