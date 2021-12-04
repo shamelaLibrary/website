@@ -4,9 +4,11 @@
     
         <title>الموسوعة الشاملة - {{ title }}</title>
 
-        <link rel="stylesheet" href="/css/bootstrap/bootstrap.rtl.min.css">
         <meta http-equiv="X-UA-Compatible", content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="/css/bootstrap/bootstrap.rtl.min.css">
+        <link rel="stylesheet" href="/css/layouts/default.css">
 
         {% block head %} {% endblock %}
 
@@ -14,44 +16,68 @@
 
     <body dir="rtl">
         
-        <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">المكتبة الشاملة النصية</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        {% for name, path in menu %}
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ path }}">{{ name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="w-100">
-
-            {% block content %}{% endblock %}
+        <div id="default" class="layout layout--loading">
         
-        </main>
+            <div id="overlay">
 
-        <footer class="text-center">
-            Developed with
-            <i title="flafel">🧆</i>
-            and
-            <i title="love">💘</i>
-            by
-            <a href="https://twitter.com/AbrahemAlhofe" title="@AbrahemAlhofe" target="_blank">@AbrahemAlhofe</a>
-            and
-            <a href="https://twitter.com/yshalsager" title="@yshalsager" target="_blank">@yshalsager</a>
-        </footer>
+                <div id="loader"></div>
+
+            </div>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">المكتبة الشاملة النصية</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            {% for name, path in menu %}
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{{ path }}">{{ name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="w-100">
+
+                {% block content %}{% endblock %}
+            
+            </main>
+
+            <footer class="text-center">
+                Developed with
+                <i title="flafel">🧆</i>
+                and
+                <i title="love">💘</i>
+                by
+                <a href="https://twitter.com/AbrahemAlhofe" title="@AbrahemAlhofe" target="_blank">@AbrahemAlhofe</a>
+                and
+                <a href="https://twitter.com/yshalsager" title="@yshalsager" target="_blank">@yshalsager</a>
+            </footer>
+        
+        </div>
 
         <script src="/js/bootstrap/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-        {% block scripts %} {% endblock %}
+        <script>
+        
+            const layout = document.querySelector(".layout#default")
+        
+        </script>
+
+        {% block scripts %}
+        
+            <script>
+            
+                layout.classList.remove("layout--loading")
+
+            </script>
+
+        {% endblock %}
 
     </body>
 

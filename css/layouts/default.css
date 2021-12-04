@@ -1,0 +1,60 @@
+.layout#default {
+
+    width: 100vw;
+    height: 100vh;
+
+}
+
+#overlay {
+
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 10;
+
+}
+
+#overlay #loader {
+    
+    width: 5vw;
+    height: 5vw;
+    border-radius: 100px;
+    border: 5px solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-width: 5px 5px 0px 0px;
+    animation: infinite-rotate 1s linear infinite;
+
+}
+
+.layout--loading {
+
+    overflow: hidden;
+
+}
+
+.layout--loading #overlay {
+
+    display: block;
+
+}
+
+@keyframes infinite-rotate {
+
+    0% {
+
+        transform: translate(-50%, -50%) rotateZ(0deg);
+
+    }
+
+    100% {
+
+       transform: translate(-50%, -50%) rotateZ(360deg);
+
+    }
+
+}

@@ -62,8 +62,14 @@
 
     <script>
 
-        $(document).ready( () => $('#table > table').DataTable() );
+        $('#table > table').on("init.dt", () => {
 
+            layout.classList.remove("layout--loading")
+
+        })
+
+        $('#table > table').DataTable()
+        
     </script>
 
 {% endblock %}
