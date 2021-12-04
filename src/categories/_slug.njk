@@ -44,7 +44,9 @@ eleventyComputed:
                     <td>
                         <a class="text-reset" href="/books/{{ book.id }}-{{ book.title | slug }}.html">{{ book.title }}</a>
                     </td>
-                    <td>{{ book.author }}</td>
+                    <td>
+                        <a class="text-reset" href="/authors/{{ books.by_author[book.author].id }}-{{ book.author | slug }}.html">{{ book.author }}</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
