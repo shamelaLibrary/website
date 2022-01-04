@@ -2,49 +2,30 @@
 
 {% extends "layouts/default.njk" %}
 
-{% block head %}
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-
-{% endblock %}
-
 {% block content %}
     
-    <section class="d-flex justify-content-center align-items-center" style="height: 100vh">
+    <section class="d-flex justify-content-center align-items-center" style="padding-top: 130px;padding-bottom: 50px;">
     
         <div class="text-center">
-            <h1 style="font-size: 5em">الموسوعة الشاملة</h1>
-            <h2 class="text-muted">أكثر من 7000 كتاب إلكتروني</h2>
+            <h1 style="font-size: 5em;" class="mb-5">المكتبة الشاملة النصية</h1>
+            <h2 class="text-muted">أكثر من 7000 كتاب نصي لأجهزة القراءة اﻹلكترونية</h2>
         </div>
     
     </section>
 
-    <section id="table" class="d-flex justify-content-center flex-column p-4" style="height: 100vh">
+    <section id="table" class="container-fluid p-4">
     
-        <h1 class="mb-2">التصنيفات</h1>
-
-        <table class="display">
-        
-            <thead>
-                <tr>
-                    <th>الإسم</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
+        <h3 class="mb-5">التصنيفات</h1>
+        <div class="container-fluid">
+            <div class="row justify-content-around text-center">
                 {% for category in categories %}
-                <tr>
-                    <td>
-                        <a class="text-reset" href="/categories/{{ category.name | slug }}.html">{{ category.name }}</a>
-                    </td>
-                </tr>
+                    <div class="col-md-3 card bg-light fs-3 p-4 m-3">
+                        <a class="text-decoration-none text-dark" href="/categories/{{ category.name | slug }}.html">{{ category.name }}</a>
+                    </div>
                 {% endfor %}
+            </div>
+        </div>
 
-            </tbody>
-
-        </table>
-    
     </section >
 
 {% endblock %}
@@ -53,17 +34,9 @@
 
     <script src="/js/jquery.js"></script>
 
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-
     <script>
 
-        $('#table > table').on("init.dt", () => {
-
-            layout.classList.remove("layout--loading")
-
-        })
-
-        $('#table > table').DataTable()
+        layout.classList.remove("layout--loading")
 
     </script>
 
